@@ -6,7 +6,10 @@ import '../styles/main.scss'
 function App() {
   const title = "React";
 
-
+  const [numberOfErrors, setNumberOfErrors] = useState(0);
+const handleClick = () => {
+  //incrementa el valor número de errores
+};
   return (
 <>
 <div className="page">
@@ -52,7 +55,8 @@ function App() {
             />
           </form>
         </section>
-        <section className="dummy error-5">
+      
+        <section className="dummy error-0">{/*revisar*/}
           <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
@@ -68,6 +72,7 @@ function App() {
           <span className="error-1 line"></span>
         </section>
       </main>
+      <button onClick={handleClick} className='btnInc'>INCREMENTAR</button>
     </div>
 
 </>
