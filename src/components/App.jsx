@@ -4,12 +4,23 @@ import '../styles/main.scss';
 function App() {
   
   const [numberOfErrors, setNumberOfErrors] = useState(0);
+  const [lastLetter, setLastLetter] = useState ('');
 
   const handleClick = () => {
     setNumberOfErrors(numberOfErrors + 1);
     return (numberOfErrors);
   };
 
+  const handleInput = (event) => {
+    let re = /^[A-Za-z]$/;
+    if( !re.test(event.target.value) || event.target.value === ''){
+      console.log('Tienes que escribir una letra');
+    }else{
+      setLastLetter(event.target.value);
+    }
+
+
+  };
 
   return (
     <>
@@ -51,6 +62,8 @@ function App() {
                 type='text'
                 name='last-letter'
                 id='last-letter'
+                onChange={handleInput}
+                pattern="[A-Za-z]"
               />
             </form>
           </section>
