@@ -5,13 +5,16 @@ function App() {
   
   const [numberOfErrors, setNumberOfErrors] = useState(0);
   const [lastLetter, setLastLetter] = useState ('');
+  const [word, setWord] = useState ('pepina');
+  const [userLetters, setUserLetters] = useState ([]);
+
 
   const handleClick = () => {
     setNumberOfErrors(numberOfErrors + 1);
     return (numberOfErrors);
   };
 
-  const handleInput = (event) => {
+  const handleInputLastLetter = (event) => {
     let re = /^[A-Za-z]$/;
     if( !re.test(event.target.value) || event.target.value === ''){
       console.log('Tienes que escribir una letra');
@@ -19,9 +22,20 @@ function App() {
       setLastLetter(event.target.value);
     }
 
+  setUserLetters([...userLetters]);
 
   };
+const renderSolutionLetters =()=>{
+  const wordLetters = word.split('');
+  return wordLetters.map((letter, index) =>{
+    return ( 
+    <li key={index} className='letter'> 
+    </li>
 
+    )
+
+  } )
+}
   return (
     <>
       <div className='page'>
@@ -32,13 +46,14 @@ function App() {
           <section>
             <div className='solution'>
               <h2 className='title'>Solución:</h2>
-              <ul className='letters'>
-                <li className='letter'>p</li>
+
+              <ul className='letters'> {renderSolutionLetters()}
+              {/*}  <li className='letter'>p</li>
                 <li className='letter'>e</li>
                 <li className='letter'>p</li>
                 <li className='letter'></li>
                 <li className='letter'>n</li>
-                <li className='letter'></li>
+                <li className='letter'></li>*/}
               </ul>
             </div>
             <div className='error'>
@@ -62,7 +77,7 @@ function App() {
                 type='text'
                 name='last-letter'
                 id='last-letter'
-                onChange={handleInput}
+                onChange={handleInputLastLetter}
                 pattern="[A-Za-z]"
               />
             </form>
